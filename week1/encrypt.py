@@ -26,16 +26,16 @@ def main():
     snapshot = create_snapshot(volume)
 
     encrypted_snapshot = copy_and_encrypt_snapshot(ec2, snapshot)
-
     encrypted_volume = create_volume_with_snapshot(
         ec2, encrypted_snapshot, instance.placement["AvailabilityZone"]
     )
 
     stopped = stop_instance(instance)
+
     detach_volume_from_instance(instance, volume)
     attach_volume_to_instance(instance, encrypted_volume)
+
     start_instance(instance)
-    pass
 
 
 # Get instance id from args
