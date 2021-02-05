@@ -1,7 +1,8 @@
 # 메시지 처리 앱
 import boto3
-import time
 
+import time
+import random
 
 def main():
     sqs = boto3.resource("sqs")
@@ -14,7 +15,7 @@ def main():
 
             message.delete()
 
-        time.sleep(15)
+        time.sleep(random.randint(15, 30))
 
 
 if __name__ == "__main__":
